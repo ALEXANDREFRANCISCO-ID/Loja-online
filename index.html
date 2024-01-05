@@ -6,32 +6,36 @@
   <title>Seu Certificado</title>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js"></script>
  <script>
+        
         function generateCertificate() {
-            const doc = new jsPDF();
-        
-            // Carregando a imagem de background
-            const img = new Image();
-            img.src = 'foto1-azul.png'; // Substitua pelo caminho da sua imagem de background
-        
-            img.onload = function() {
-                // Definindo as propriedades da imagem de background
-                const width = doc.internal.pageSize.getWidth();
-                const height = doc.internal.pageSize.getHeight();
-        
-                // Desenhando a imagem de background
-                doc.addImage(img, 'JPEG', 0, 0, width, height);
-        
-                // Adicionando o texto do certificado
-                doc.setFontSize(32);
-                doc.text('Certificado de presença e yy', width / 2, height / 2, { align: 'center' });
-        
-                // Salvando o certificado como PDF
+            // Cria um novo objeto jsPDF
+            var doc = new jsPDF({
+                orientation: 'landscape',
+                unit: 'mm',
+                format: 'a4'
+            });
+
+            // Carrega a imagem de plano de fundo
+            var img = new Image();
+            img.src = 'foto1-azul.png';
+
+            // Espera até que a imagem seja completamente carregada
+            img.onload = function () {
+                // Define a imagem como plano de fundo
+                doc.addImage(img, 'JPEG', 0, 0, doc.internal.pageSize.getWidth(), doc.internal.pageSize.getHeight());
+
+                // Adiciona o conteúdo do certificado
+                doc.setFontSize(20);
+                doc.setTextColor(0, 0, 0);
+                doc.text('Certificado de Conclusão', 105, 40, { align: 'center' });
+
+                // Salva o documento PDF
                 doc.save('certificado.pdf');
             };
         }
     </script>
 </head>
 <body>
-    <button onclick="generateCertificate()">Gerar Certificado</button>
+    <button onclick="generateCertificate()">Gerar Certifica de do</button>
 </body>
 </html>
