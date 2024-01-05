@@ -5,45 +5,33 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Seu Certificado</title>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js"></script>
+ <script>
+        function generateCertificate() {
+            const doc = new jsPDF();
+        
+            // Carregando a imagem de background
+            const img = new Image();
+            img.src = 'foto1-azul.png'; // Substitua pelo caminho da sua imagem de background
+        
+            img.onload = function() {
+                // Definindo as propriedades da imagem de background
+                const width = doc.internal.pageSize.getWidth();
+                const height = doc.internal.pageSize.getHeight();
+        
+                // Desenhando a imagem de background
+                doc.addImage(img, 'JPEG', 0, 0, width, height);
+        
+                // Adicionando o texto do certificado
+                doc.setFontSize(32);
+                doc.text('Certificado de presença e yy', width / 2, height / 2, { align: 'center' });
+        
+                // Salvando o certificado como PDF
+                doc.save('certificado.pdf');
+            };
+        }
+    </script>
 </head>
 <body>
-  <script>
-    // Cole aqui o código jsPDF fornecido
-    // Cria um novo objeto jsPDF
-var doc = new jsPDF();
-
-// Função para carregar a imagem de plano de fundo
-function loadBackgroundImage(url) {
-  var img = new Image();
-  img.src = url;
-  img.setAttribute('crossOrigin', 'anonymous'); // Necessário caso a imagem esteja em outro domínio
-
-  img.onload = function() {
-    // Define a imagem de plano de fundo no documento
-    doc.addImage(img, 'JPEG', 0, 0, doc.internal.pageSize.getWidth(), doc.internal.pageSize.getHeight());
-
-    // Chama a função para adicionar o conteúdo do certificado ao PDF
-    addCertificateContent();
-  };
-}
-
-// Função para adicionar o conteúdo do certificado ao PDF
-function addCertificateContent() {
-  // Define o estilo de fonte
-  doc.setFont('helvetica');
-  doc.setFontSize(36);
-  doc.setTextColor(0, 0, 0);
-
-  // Adiciona o texto do certificado
-  doc.text('Certificado de Participação', doc.internal.pageSize.getWidth() / 2, doc.internal.pageSize.getHeight() / 2, { align: 'center' });
-
-  // Salva o arquivo PDF
-  doc.save('certificado.pdf');
-}
-
-// Carrega a imagem de plano de fundo e inicia o processo de criação do certificado
-loadBackgroundImage('foto1-azul.png');
-
-  </script>
+    <button onclick="generateCertificate()">Gerar Certificado</button>
 </body>
 </html>
