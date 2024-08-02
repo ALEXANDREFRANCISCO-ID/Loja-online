@@ -1,0 +1,20 @@
+<?php
+session_start();
+if (isset($_SESSION['username'])) {
+    header('Location: dashboard.php');
+    exit();
+}
+?>
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <title>Inicio</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Bem-vindo!</h1>
+    <p><a href="login.php">Login</a></p>
+    <p><a href="register.php">Registrar</a></p>
+</body>
+</html>
